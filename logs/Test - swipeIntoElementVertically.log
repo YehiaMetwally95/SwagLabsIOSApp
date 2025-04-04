@@ -1,0 +1,8 @@
+[INFO] - Tapping on Element [Views] - - [03:23:55] - LogHelper 
+[WARN] - Switched to Landscape - - [03:23:55] - LogHelper 
+[INFO] - Swiping (VERTICAL) into Screen - - [03:23:55] - LogHelper 
+[INFO] - Tapping on Element [Splitting Touches across Views] - - [03:24:08] - LogHelper 
+[WARN] - Switched to Portrait - - [03:24:09] - LogHelper 
+[INFO] - Swiping (VERTICAL) into Element [Abbaye de Belloc] - - [03:24:10] - LogHelper 
+[INFO] - Tapping on Element [Aragon] - - [03:24:14] - LogHelper 
+[INFO] - Capturing Screenshot for Succeeded Scenario - - [03:24:16] - LogHelper 
