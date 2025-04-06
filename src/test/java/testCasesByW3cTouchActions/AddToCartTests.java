@@ -7,8 +7,8 @@ import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 import pagesByW3cTouchActions.LoginPage;
 import static yehiaEngine.driverManager.AppiumFactory.*;
-import static yehiaEngine.elementActions.W3CTouchActions.Direction.DOWN;
-import static yehiaEngine.elementActions.W3CTouchActions.Direction.UP;
+import static yehiaEngine.elementActions.W3CFingerActions.Direction.DOWN;
+import static yehiaEngine.elementActions.W3CFingerActions.Direction.UP;
 import yehiaEngine.managers.JsonManager;
 
 @Epic("SwagLabs Android App")
@@ -21,7 +21,7 @@ public class AddToCartTests extends BaseTest {
     JsonManager json = new JsonManager(jsonFilePathForAddToCart);
 
     @Test
-    public void addProductToCartByButton() {
+    public void addProductToCartByButton() throws InterruptedException {
         new LoginPage(getDriver(isolatedDriver))
                 .loginWithValidUser(json.getData("Users[0].Username"),json.getData("Users[0].Password"))
                 .verifyProductsPageIsOpened()
@@ -34,20 +34,19 @@ public class AddToCartTests extends BaseTest {
     }
 
     @Test
-    public void addProductToCartByDragAndDrop() {
+    public void addProductToCartByDragAndDrop() throws InterruptedException {
         new LoginPage(getDriver(isolatedDriver))
                 .loginWithValidUser(json.getData("Users[0].Username"),json.getData("Users[0].Password"))
                 .verifyProductsPageIsOpened()
 
-                .scrollToAddToCartButton(json.getData("Products[1].Name"), DOWN)
-                .addProductToCartByDragAndDrop(json.getData("Products[1].Name"))
+                .addProductToCartByDragAndDrop(json.getData("Products[0].Name"))
 
                 .openCartPageFromHeader()
-                .assertProductIsAddedToCart(json.getData("Products[1.Name"));
+                .assertProductIsAddedToCart(json.getData("Products[0].Name"));
     }
 
     @Test
-    public void addMultipleProductsToCart() {
+    public void addMultipleProductsToCart() throws InterruptedException {
         new LoginPage(getDriver(isolatedDriver))
                 .loginWithValidUser(json.getData("Users[0].Username"),json.getData("Users[0].Password"))
                 .verifyProductsPageIsOpened()
@@ -65,7 +64,7 @@ public class AddToCartTests extends BaseTest {
     }
 
     @Test
-    public void addProductToCartFromInsideProductDetailsPage() {
+    public void addProductToCartFromInsideProductDetailsPage() throws InterruptedException {
         new LoginPage(getDriver(isolatedDriver))
                 .loginWithValidUser(json.getData("Users[0].Username"),json.getData("Users[0].Password"))
                 .verifyProductsPageIsOpened()

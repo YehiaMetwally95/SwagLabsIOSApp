@@ -24,6 +24,7 @@ public class LoginTests extends BaseTest {
         new LoginPage(getDriver(isolatedDriver))
                 .loginWithValidUser(json.getData("Users[0].Username"),json.getData("Users[0].Password"))
                 .verifyProductsPageIsOpened();
+
     }
 
     @Test

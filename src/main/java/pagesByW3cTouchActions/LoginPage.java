@@ -6,25 +6,25 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import yehiaEngine.assertions.CustomAssert;
 import yehiaEngine.assertions.CustomSoftAssert;
-import yehiaEngine.elementActions.W3CTouchActions;
+import yehiaEngine.elementActions.W3CFingerActions;
 
 public class LoginPage{
 
     //Variables
     AppiumDriver driver;
-    W3CTouchActions action;
+    W3CFingerActions action;
 
     //Locators
-    By usernameTextBox = AppiumBy.accessibilityId("test-Username");
-    By passwordTextBox = AppiumBy.accessibilityId("test-Password");
-    By loginButton = AppiumBy.accessibilityId("test-LOGIN");
-    By errorMassage = AppiumBy.xpath("//*[@content-desc='test-Error message']//android.widget.TextView");
+    By usernameTextBox = AppiumBy.iOSNsPredicateString("name == 'test-Username'");
+    By passwordTextBox = AppiumBy.iOSNsPredicateString("name == 'test-Password'");
+    By loginButton = AppiumBy.iOSNsPredicateString("name == \"test-LOGIN\"");
+    By errorMassage = AppiumBy.iOSNsPredicateString("name == \"test-Error message\"");
 
     //Constructor
     public LoginPage(AppiumDriver driver)
     {
         this.driver = driver;
-        action = new W3CTouchActions(driver);
+        action = new W3CFingerActions(driver);
     }
 
     //Actions

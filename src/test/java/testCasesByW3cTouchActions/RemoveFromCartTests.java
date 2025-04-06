@@ -8,8 +8,8 @@ import pagesByW3cTouchActions.LoginPage;
 import baseTest.BaseTest;
 import yehiaEngine.managers.JsonManager;
 import static yehiaEngine.driverManager.AppiumFactory.*;
-import static yehiaEngine.elementActions.W3CTouchActions.Direction.DOWN;
-import static yehiaEngine.elementActions.W3CTouchActions.Direction.UP;
+import static yehiaEngine.elementActions.W3CFingerActions.Direction.DOWN;
+import static yehiaEngine.elementActions.W3CFingerActions.Direction.UP;
 
 @Epic("SwagLabs Android App")
 @Feature("Cart")
@@ -20,7 +20,7 @@ public class RemoveFromCartTests extends BaseTest {
     JsonManager json = new JsonManager(jsonFilePathForAddToCart);
 
     @Test
-    public void removeProductFromCartByButton() {
+    public void removeProductFromCartByButton() throws InterruptedException {
         new LoginPage(getDriver(isolatedDriver))
                 .loginWithValidUser(json.getData("Users[0].Username"),json.getData("Users[0].Password"))
                 .verifyProductsPageIsOpened()
@@ -39,7 +39,7 @@ public class RemoveFromCartTests extends BaseTest {
     }
 
     @Test
-    public void removeProductFromCartBySwipe()  {
+    public void removeProductFromCartBySwipe() throws InterruptedException {
         new LoginPage(getDriver(isolatedDriver))
                 .loginWithValidUser(json.getData("Users[0].Username"),json.getData("Users[0].Password"))
                 .verifyProductsPageIsOpened()
@@ -58,7 +58,7 @@ public class RemoveFromCartTests extends BaseTest {
     }
 
     @Test
-    public void removeAllProductsFromCart() {
+    public void removeAllProductsFromCart() throws InterruptedException {
         new LoginPage(getDriver(isolatedDriver))
                 .loginWithValidUser(json.getData("Users[0].Username"),json.getData("Users[0].Password"))
                 .verifyProductsPageIsOpened()

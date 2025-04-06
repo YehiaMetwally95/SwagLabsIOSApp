@@ -1,14 +1,13 @@
 package pagesByW3cTouchActions;
 
-import com.github.javafaker.App;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import yehiaEngine.assertions.CustomAssert;
-import yehiaEngine.elementActions.W3CTouchActions.Direction;
+import yehiaEngine.elementActions.W3CFingerActions.Direction;
 
-import static yehiaEngine.elementActions.W3CTouchActions.Direction.*;
+import static yehiaEngine.elementActions.W3CFingerActions.Direction.*;
 
 public class CartPage extends HomePage{
 
@@ -16,10 +15,10 @@ public class CartPage extends HomePage{
 
     //Locators
     By removeFromCartButton;
-    By removeFromCartSwipe = AppiumBy.accessibilityId("test-Delete");
     By backToProductsButton = AppiumBy.accessibilityId("test-CONTINUE SHOPPING");
     By checkOutButton = AppiumBy.accessibilityId("test-CHECKOUT");
     By productItem;
+    By removeFromCartSwipe;
 
     //Constructor
     public CartPage(AppiumDriver driver) {
@@ -29,8 +28,9 @@ public class CartPage extends HomePage{
     //Actions
     private void defineLocatorsByProductName(String productName)
     {
-        productItem = AppiumBy.xpath("//*[@text='"+productName+"']");
-        removeFromCartButton = AppiumBy.xpath("//*[@text='"+productName+"']/parent::*/following-sibling::*[@content-desc='test-Price']//*[@content-desc='test-REMOVE']");
+        productItem = AppiumBy.iOSNsPredicateString("name == '"+productName+"'");
+        removeFromCartButton = AppiumBy.xpath("//XCUIElementTypeStaticText[@name='"+productName+"']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeOther//XCUIElementTypeOther[@name = 'test-REMOVE']");
+        removeFromCartSwipe = AppiumBy.xpath("//XCUIElementTypeStaticText[@name='"+productName+"']/parent::XCUIElementTypeOther/parent::XCUIElementTypeOther/parent::XCUIElementTypeOther/parent::XCUIElementTypeOther/parent::XCUIElementTypeOther//XCUIElementTypeOther[@name='test-Delete']");
     }
 
 

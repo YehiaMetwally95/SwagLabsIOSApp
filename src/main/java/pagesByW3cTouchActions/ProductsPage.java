@@ -5,7 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import yehiaEngine.assertions.CustomSoftAssert;
-import yehiaEngine.elementActions.W3CTouchActions.Direction;
+import yehiaEngine.elementActions.W3CFingerActions.Direction;
 
 public class ProductsPage extends HomePage {
 
@@ -17,7 +17,6 @@ public class ProductsPage extends HomePage {
     By dropButton = AppiumBy.accessibilityId("test-Cart drop zone");
     By addToCardButton;
     By removeFromCartButton;
-    By products = AppiumBy.xpath("//android.widget.TextView[@text=\"PRODUCTS\"]");
 
     //Locator Texts
     String productItemText;
@@ -32,10 +31,10 @@ public class ProductsPage extends HomePage {
     private void defineLocatorsByProductName(String productName)
     {
         this.productItemText = productName;
-        productItem = AppiumBy.xpath("//*[@text='"+productName+"']");
-        addToCardButton = AppiumBy.xpath("//*[@text='"+productName+"']/following-sibling::android.view.ViewGroup[@content-desc='test-ADD TO CART']");
-        removeFromCartButton= AppiumBy.xpath("//*[@text='"+productName+"']/following-sibling::android.view.ViewGroup[@content-desc='test-REMOVE']");
-        dragButton =AppiumBy.xpath("//*[@text='"+productName+"']/following-sibling::android.view.ViewGroup[@content-desc='test-Drag Handle']");
+        productItem = AppiumBy.iOSNsPredicateString("name == \"test-Item title\" AND label == '"+productName+"'");
+        addToCardButton = AppiumBy.xpath("//XCUIElementTypeOther[@name='test-Item' and contains(@label,'"+productName+"')] // XCUIElementTypeOther [@name = 'ADD TO CART']");
+        removeFromCartButton= AppiumBy.xpath("//XCUIElementTypeOther[@name='test-Item' and contains(@label,'"+productName+"')] // XCUIElementTypeOther [@name = 'REMOVE']");
+        dragButton =AppiumBy.xpath("//XCUIElementTypeOther[@name='test-Item' and contains(@label,'"+productName+"')] // XCUIElementTypeOther [@name = 'test-Drag Handle']");
     }
 
     @Step("Add Product To Cart By Drag & Drop")

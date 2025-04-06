@@ -1,6 +1,5 @@
 package testCasesByW3cTouchActions;
 
-import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -10,8 +9,8 @@ import pagesByW3cTouchActions.LoginPage;
 import baseTest.BaseTest;
 import yehiaEngine.managers.JsonManager;
 import static yehiaEngine.driverManager.AppiumFactory.getDriver;
-import static yehiaEngine.elementActions.W3CTouchActions.Direction.DOWN;
-import static yehiaEngine.elementActions.W3CTouchActions.Direction.UP;
+import static yehiaEngine.elementActions.W3CFingerActions.Direction.DOWN;
+import static yehiaEngine.elementActions.W3CFingerActions.Direction.UP;
 
 @Epic("SwagLabs Android App")
 @Feature("Checkout")
@@ -23,7 +22,7 @@ public class CheckOutCart extends BaseTest {
     JsonManager json = new JsonManager(jsonFilePathForAddToCart);
 
     @Test
-     public void checkOutCart() {
+     public void checkOutCart() throws InterruptedException {
         // Login with Valid Credentials
         DeviceRotation rotate = new DeviceRotation(0,0,90);
 

@@ -9,7 +9,7 @@ import org.testng.Assert;
 public class CartCheckOutCompletePage extends HomePage {
     //Locators
     By backHomeLocator = AppiumBy.accessibilityId("test-BACK HOME");
-    By successfulMassage = AppiumBy.xpath("//android.widget.TextView[@text=\"THANK YOU FOR YOU ORDER\"]");
+    By successfulMassage = AppiumBy.xpath("(//XCUIElementTypeOther[@name=\"BACK HOME\"]/preceding-sibling::XCUIElementTypeOther/preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText)[1]");
 
     //Constructor
     public CartCheckOutCompletePage(AppiumDriver driver) {

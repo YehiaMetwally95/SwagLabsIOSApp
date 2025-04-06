@@ -6,10 +6,10 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import yehiaEngine.assertions.CustomAssert;
 import yehiaEngine.assertions.CustomSoftAssert;
-import yehiaEngine.elementActions.W3CTouchActions.Direction;
+import yehiaEngine.elementActions.W3CFingerActions.Direction;
 
-import static yehiaEngine.elementActions.W3CTouchActions.Direction.DOWN;
-import static yehiaEngine.elementActions.W3CTouchActions.Direction.LEFT;
+import static yehiaEngine.elementActions.W3CFingerActions.Direction.DOWN;
+import static yehiaEngine.elementActions.W3CFingerActions.Direction.LEFT;
 
 public class CartCheckOutOverviewPage extends HomePage{
     //Variables
@@ -20,13 +20,13 @@ public class CartCheckOutOverviewPage extends HomePage{
     By productPriceLocator;
     By productDescriptionLocator;
     By productQuantityLocator;
+    By removeFromCartSwipe;
 
-    By removeFromCartSwipe = AppiumBy.accessibilityId("test-Delete");
     By backToProductsButton = AppiumBy.accessibilityId("test-CANCEL");
     By finishButton = AppiumBy.accessibilityId("test-FINISH");
-    By paymentInfoLocator = AppiumBy.xpath("(//*[@text=\"Payment Information:\"]/following-sibling::android.widget.TextView)[1]");
-    By shippingInfoLocator = AppiumBy.xpath("(//*[@text=\"Shipping Information:\"]/following-sibling::android.widget.TextView)[1]");
-    By totalPriceLocator = AppiumBy.xpath("//*[contains(@text,'Total')]");
+    By paymentInfoLocator = AppiumBy.xpath("//XCUIElementTypeStaticText[@name=\"Payment Information:\"]/following-sibling::XCUIElementTypeStaticText");
+    By shippingInfoLocator = AppiumBy.xpath("//XCUIElementTypeStaticText[@name=\"Shipping Information:\"]/following-sibling::XCUIElementTypeStaticText");
+    By totalPriceLocator = AppiumBy.xpath("//XCUIElementTypeStaticText[contains(@value,'Total')]");
 
     //Constructor
     public CartCheckOutOverviewPage(AppiumDriver driver) {
@@ -37,10 +37,11 @@ public class CartCheckOutOverviewPage extends HomePage{
     private void defineLocatorsByProductName(String productName)
     {
         this.productName = productName;
-        productItem = AppiumBy.xpath("//*[@text= '"+productName+"']");
-        productPriceLocator = AppiumBy.xpath("//*[@text= '"+productName+"']/parent::*/following-sibling::*[@content-desc='test-Price']//android.widget.TextView");
-        productDescriptionLocator = AppiumBy.xpath("//*[@text= '"+productName+"']/following-sibling::android.widget.TextView");
-        productQuantityLocator = AppiumBy.xpath("//*[@text= '"+productName+"']/ancestor::*[@content-desc='test-Description']/preceding-sibling::*[@content-desc='test-Amount']/android.widget.TextView");
+        productItem = AppiumBy.iOSNsPredicateString("name == \"test-Item title\" AND label == '"+productName+"'");
+        productPriceLocator = AppiumBy.xpath("//XCUIElementTypeStaticText[@name='"+productName+"']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeOther//XCUIElementTypeStaticText");
+        productDescriptionLocator = AppiumBy.xpath("//XCUIElementTypeStaticText[@name='"+productName+"']/following-sibling::XCUIElementTypeStaticText");
+        productQuantityLocator = AppiumBy.xpath("//XCUIElementTypeStaticText[@name='"+productName+"']/parent::XCUIElementTypeOther/parent::XCUIElementTypeOther/preceding-sibling::XCUIElementTypeOther//XCUIElementTypeStaticText");
+        removeFromCartSwipe = AppiumBy.xpath("//XCUIElementTypeStaticText[@name='"+productName+"']/parent::XCUIElementTypeOther/parent::XCUIElementTypeOther/parent::XCUIElementTypeOther/parent::XCUIElementTypeOther/parent::XCUIElementTypeOther//XCUIElementTypeOther[@name='test-Delete']");
     }
 
     @Step("Return Back to Products Page")

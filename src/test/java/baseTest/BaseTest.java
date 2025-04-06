@@ -4,19 +4,20 @@ import io.appium.java_client.AppiumDriver;
 import org.testng.annotations.*;
 import prepareTestData.LoadProductsFromDB;
 import prepareTestData.LoadUsersFromDB;
+import yehiaEngine.driverManager.AppiumFactory;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static yehiaEngine.driverManager.AppiumFactory2.getDriver;
+import static yehiaEngine.driverManager.AppiumFactory.getDriver;
 
 public class BaseTest {
 
     public ThreadLocal<AppiumDriver> isolatedDriver;
 
     @BeforeSuite
-    public void startAppiumServer() throws InterruptedException {
-        AppiumFactory2.startAppiumServerOnMac();
+    public void startAppiumServer() {
+        AppiumFactory.startAppiumServerOnMac();
     }
 
     @BeforeTest
@@ -30,22 +31,21 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUpAndOpenApp() {
-
         //Open App
-        isolatedDriver = AppiumFactory2.openApp();
+        isolatedDriver = AppiumFactory.openApp();
     }
 
     @AfterMethod
     public void closeApp(){
         //Close App after every test
-        AppiumFactory2.closeApp(getDriver(isolatedDriver));
+        AppiumFactory.closeApp(getDriver(isolatedDriver));
 
         //Remove the Isolated Driver from Memory
-        AppiumFactory2.removeIsolatedDriver(isolatedDriver);
+        AppiumFactory.removeIsolatedDriver(isolatedDriver);
     }
 
     @AfterSuite
     public void stopAppiumServer(){
-        AppiumFactory2.stopAppiumServer();
+        AppiumFactory.stopAppiumServer();
     }
 }

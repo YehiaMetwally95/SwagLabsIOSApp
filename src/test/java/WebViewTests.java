@@ -1,9 +1,8 @@
 import baseTest.BaseTest;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pagesByNativeAndroidActions.LoginPage;
+import pagesByNativeIOSActions.LoginPage;
 import webViewPages.HomePage;
 import yehiaEngine.managers.JsonManager;
 

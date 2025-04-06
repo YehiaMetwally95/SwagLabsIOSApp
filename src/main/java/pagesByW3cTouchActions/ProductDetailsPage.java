@@ -5,9 +5,9 @@ import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import yehiaEngine.assertions.CustomSoftAssert;
-import yehiaEngine.elementActions.W3CTouchActions.Direction;
+import yehiaEngine.elementActions.W3CFingerActions.Direction;
 
-import static yehiaEngine.elementActions.W3CTouchActions.Direction.DOWN;
+import static yehiaEngine.elementActions.W3CFingerActions.Direction.DOWN;
 
 public class ProductDetailsPage extends HomePage{
 
@@ -19,8 +19,8 @@ public class ProductDetailsPage extends HomePage{
     By productPicture = AppiumBy.accessibilityId("test-Image Container");
     By backToProductsButton = AppiumBy.accessibilityId("test-BACK TO PRODUCTS");
     By productPrice = AppiumBy.accessibilityId("test-Price");
-    By productName = AppiumBy.xpath("(//*[@content-desc='test-Description']//android.widget.TextView)[1]");
-    By productDescription = AppiumBy.xpath("(//*[@content-desc='test-Description']//android.widget.TextView)[2]");
+    By productName = AppiumBy.xpath("(//XCUIElementTypeOther[@name=\"test-Description\"] / XCUIElementTypeStaticText)[1]");
+    By productDescription = AppiumBy.xpath("(//XCUIElementTypeOther[@name=\"test-Description\"] / XCUIElementTypeStaticText)[2]");
 
     //Constructor
     public ProductDetailsPage(AppiumDriver driver) {
